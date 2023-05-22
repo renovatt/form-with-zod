@@ -8,7 +8,7 @@ export const Avatar = ({ name, url }: AvatarImageProps) => {
 
     return (
         <div>
-            <img className="w-32 h-32 rounded object-cover"
+            <img className="w-20 h-20 rounded-full object-cover border"
                 src={url}
                 alt={name}
                 onLoad={handleLoad}

@@ -11,9 +11,10 @@ import TechList from "./TechList";
 import { Field } from "./Field";
 import { ErrorMessage } from "./ErrorMessage";
 import InputPhoneMask from "./InputPhoneMask";
-import { AvatarImageProps, SchemaTypeProps } from "../@types";
+import { SchemaTypeProps } from "../@types";
 import { zodSchema } from "../zod";
 import { Insert } from "../connections";
+import { toast } from 'react-toastify';
 
 // const defaultData: SchemaTypeProps = {
 //     password: "",
@@ -26,7 +27,7 @@ import { Insert } from "../connections";
 //     email: "",
 //     username: "",
 //     techs: [],
-//     avatar: File,
+//     avatar: null,
 //     date: "",
 //     phone: "",
 //     cpf: ""
@@ -34,7 +35,7 @@ import { Insert } from "../connections";
 
 export default function Form() {
     const [data, setData] = useState<any>({})
-    const [photos, setPhotos] = useState<AvatarImageProps[]>([])
+    const [loading, setLoading] = useState(false)
 
     const methods = useForm<SchemaTypeProps>({
         mode: 'all',
@@ -45,19 +46,26 @@ export default function Form() {
     const onSubmit = async (data: SchemaTypeProps) => {
         const file = data.avatar;
 
-        if (file && file.size > 0) {
-            const result = await Insert(file, data.username)
+        setLoading(true);
 
-            if (result instanceof Error) {
-                alert(`${result.name} - ${result.message}`)
-            } else {
-                const newPhotoList = [...photos]
-                newPhotoList.push(result)
-                setPhotos(newPhotoList)
+        try {
+            if (file && file.size > 0) {
+                const result = await Insert(file, data.username);
+
+                if (result instanceof Error) {
+                    alert(`${result.name} - ${result.message}`);
+                }
             }
+
+            setData(data);
+            toast.success('Formulário enviado com sucesso!')
+        } catch (error) {
+            toast.error('Aconteceu algum erro ao enviar')
+        } finally {
+            setLoading(false);
         }
-        setData(data)
     };
+
 
     return (
         <FormProvider {...methods}>
@@ -201,7 +209,7 @@ export default function Form() {
                     <input className="bg-violet-500 text-white rounded px-3 h-10 font-semibold text-sm hover:bg-violet-600 cursor-pointer" type='submit' />
                 </form>
 
-                <UserData {...data} />
+                {loading ? <p className="flex flex-col w-full rounded border p-2">Carregando..</p> : <UserData {...data} />}
             </section>
         </FormProvider>
     );
