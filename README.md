@@ -8,7 +8,7 @@
 
 ## Descrição
 
-[Ver Projeto](form-with-zod.vercel.app)
+[Ver Projeto](https://form-with-zod.vercel.app/)
 
 #### Apenas um formulário utilizando zod para validar os campos e tratar erros junto com react-hook-form.
 
