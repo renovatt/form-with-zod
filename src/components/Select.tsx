@@ -1,5 +1,4 @@
-import React from 'react'
-import { SelectProps } from '@/@types';
+import { SelectProps } from '../@types';
 import { useFormContext } from 'react-hook-form';
 import Label from './Label';
 

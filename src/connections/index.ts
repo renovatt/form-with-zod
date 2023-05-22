@@ -1,6 +1,7 @@
-import { AvatarImageProps } from "@/@types"
+
+import { storage } from "../firebase"
+import { AvatarImageProps } from "../@types"
 import { ref, listAll, getDownloadURL, uploadBytes } from "firebase/storage"
-import { storage } from "@/firebase"
 
 export const getAll = async () => {
     const list: AvatarImageProps[] = []

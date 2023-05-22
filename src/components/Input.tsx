@@ -1,4 +1,4 @@
-import { InputProps } from '@/@types'
+import { InputProps } from "../@types";
 import { useFormContext } from "react-hook-form";
 import Label from './Label';
 

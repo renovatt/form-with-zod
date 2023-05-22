@@ -1,4 +1,4 @@
-import { CheckboxProps } from '@/@types'
+import { CheckboxProps } from '../@types'
 import { useFormContext } from 'react-hook-form';
 import Label from './Label';
 

@@ -1,13 +1,9 @@
-'use client'
-
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AvatarImageProps, SchemaTypeProps } from '@/@types'
-import { zodSchema } from '@/zod'
 import Input from "./Input";
 import Checkbox from "./Checkbox";
 import Select from "./Select";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InputNumber from "./InputNumber";
 import InputAvatar from "./InputAvatar";
 import UserData from "./UserData";
@@ -15,9 +11,9 @@ import TechList from "./TechList";
 import { Field } from "./Field";
 import { ErrorMessage } from "./ErrorMessage";
 import InputPhoneMask from "./InputPhoneMask";
-import { Insert, getAll } from "@/connections";
-import { storage } from "@/firebase";
-// import supabase from "@/supabase";
+import { AvatarImageProps, SchemaTypeProps } from "../@types";
+import { zodSchema } from "../zod";
+import { Insert } from "../connections";
 
 // const defaultData: SchemaTypeProps = {
 //     password: "",
@@ -25,7 +21,7 @@ import { storage } from "@/firebase";
 //     agree: false,
 //     select: "",
 //     quantity: 0,
-//     role: "user",
+//     role: "",
 //     url: "",
 //     email: "",
 //     username: "",
@@ -62,14 +58,6 @@ export default function Form() {
         }
         setData(data)
     };
-
-    const getPhotos = async () => {
-        setPhotos(await getAll())
-    }
-
-    useEffect(() => {
-        getPhotos()
-    }, [])
 
     return (
         <FormProvider {...methods}>

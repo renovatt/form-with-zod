@@ -13,6 +13,19 @@ import { z } from "zod";
 //         return files.item(0)!
 //     }),
 
+//  avatar: z.instanceof(FileList)
+//         .refine((files) => !!files.item(0), "A imagem de perfil é obrigatória")
+//         .transform(files => {
+//             return files.item(0)!
+//         }),
+
+// avatar: z.instanceof(FileList)
+// .refine((files) => files?.length == 1, "A imagem de perfil é obrigatória.")
+// .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, `Tamanho máximo de 5MB.`)
+// .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+//     "Apenas .jpg, .jpeg, .png and .webp são aceitos."
+// ),
+
 export const zodSchema = z.object({
     username: z.string().max(44, 'O nome tem muito caracteres').nonempty('Nome é obrigatório'),
     email: z.string().email('Precisa ser um e-mail válido'),
@@ -58,7 +71,7 @@ export const zodSchema = z.object({
         }
     }).nonempty('CPF é obrigatório'),
 
-    role: z.enum(['admin', 'user'], {
+    role: z.enum(['admin', 'user', ''], {
         errorMap: () => {
             return { message: 'Escolha entre admin ou user' }
         }
@@ -83,6 +96,10 @@ export const zodSchema = z.object({
     .refine(fields => /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(fields.cpf), {
         message: "O CPF deve estar no formato 123.456.789-01.",
         path: ['cpf'],
+    })
+    .refine(fields => fields.role.length > 0, {
+        path: ['role'],
+        message: 'Escolha entre admin ou user'
     })
 
     .transform(fields => ({

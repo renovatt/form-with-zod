@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { AvatarImageProps, SchemaTypeProps } from '@/@types'
+import { AvatarImageProps, SchemaTypeProps } from '../@types'
 import { Avatar } from './Avatar'
-import { getAll } from '@/connections'
+import { getAll } from '../connections'
 
 const UserData = (props: SchemaTypeProps) => {
     const [photos, setPhotos] = useState<AvatarImageProps[]>([])

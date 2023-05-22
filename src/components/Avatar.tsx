@@ -1,5 +1,4 @@
-import { AvatarImageProps } from "@/@types";
-import Image from "next/image";
+import { AvatarImageProps } from "../@types";
 
 export const Avatar = ({ name, url }: AvatarImageProps) => {
 
@@ -9,13 +8,10 @@ export const Avatar = ({ name, url }: AvatarImageProps) => {
 
     return (
         <div>
-            <Image className="w-32 h-32 rounded object-cover"
+            <img className="w-32 h-32 rounded object-cover"
                 src={url}
                 alt={name}
                 onLoad={handleLoad}
-                priority
-                width={500}
-                height={500}
             />
         </div>
     )
