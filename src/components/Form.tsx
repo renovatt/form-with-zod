@@ -70,6 +70,7 @@ export default function Form() {
     return (
         <FormProvider {...methods}>
             <section className="flex flex-col gap-4 w-full max-w-xs">
+                <h1 className="text-3xl text-center">Formulário com Zod</h1>
                 <form
                     className="flex flex-col gap-4 w-full max-w-xs"
                     onSubmit={methods.handleSubmit(onSubmit)}>
