@@ -10,7 +10,7 @@
 
 [Ver Projeto](https://form-with-zod.vercel.app/)
 
-#### Apenas um formulário utilizando zod para validar os campos e tratar erros junto com react-hook-form.
+#### Apenas um formulário utilizando zod para validar os campos e tratar erros junto com react-hook-form, utilizando firebase para salvar a imagem.
 
 #
 
@@ -45,6 +45,7 @@
 - [zod](https://zod.dev/)
 - [react-toastify](https://www.npmjs.com/package/react-toastify)
 - [react-hook-form](https://react-hook-form.com/)
+- [firebase](https://firebase.google.com/?hl=pt&authuser=0)
 
 🎨 **Estilização**
 - [tailwindcss](https://tailwindcss.com/docs/installation)
